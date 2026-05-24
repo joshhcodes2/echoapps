@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.SupervisorJob
 
 /**
  * Playback states for the audio player.
@@ -40,7 +41,7 @@ class AudioPlayerManager {
 
     private var mediaPlayer: MediaPlayer? = null
     private var positionJob: Job? = null
-    private val scope = CoroutineScope(Dispatchers.Main)
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
     private val _state = MutableStateFlow(PlaybackState.IDLE)
     val state: StateFlow<PlaybackState> = _state.asStateFlow()
