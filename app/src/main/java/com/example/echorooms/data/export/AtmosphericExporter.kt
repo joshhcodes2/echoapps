@@ -27,6 +27,14 @@ object AtmosphericExporter {
         val accentHex = composeColorToHex(theme.accentColor)
         val glowHex = composeColorToHex(theme.glowColor)
 
+        val glowR = Integer.parseInt(glowHex.substring(1, 3), 16)
+        val glowG = Integer.parseInt(glowHex.substring(3, 5), 16)
+        val glowB = Integer.parseInt(glowHex.substring(5, 7), 16)
+
+        val accentR = Integer.parseInt(accentHex.substring(1, 3), 16)
+        val accentG = Integer.parseInt(accentHex.substring(3, 5), 16)
+        val accentB = Integer.parseInt(accentHex.substring(5, 7), 16)
+
         val roomDate = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(Date(room.createdAt))
 
         val htmlContent = buildString {
@@ -74,7 +82,7 @@ object AtmosphericExporter {
             border: 1px solid var(--border);
             border-radius: 24px;
             backdrop-filter: blur(20px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(${Integer.parseInt(glowHex.substring(1), 16)}, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba($glowR, $glowG, $glowB, 0.15);
         }
 
         .emoji {
@@ -130,7 +138,7 @@ object AtmosphericExporter {
 
         .entry-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 12px rgba(${Integer.parseInt(accentHex.substring(1), 16)}, 0.1);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 12px rgba($accentR, $accentG, $accentB, 0.1);
         }
 
         .entry-header {

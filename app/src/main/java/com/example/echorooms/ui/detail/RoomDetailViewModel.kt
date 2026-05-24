@@ -173,7 +173,7 @@ class RoomDetailViewModel(
             val file = File(context.cacheDir, "recording_${System.currentTimeMillis()}.m4a")
             voiceFile = file
             _recordingAmplitudes.value = emptyList()
-            audioRecorder.startRecording(file)
+            audioRecorder.startRecording(context, file)
         } catch (e: Exception) {
             e.printStackTrace()
         }
