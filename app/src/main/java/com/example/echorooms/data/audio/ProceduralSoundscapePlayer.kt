@@ -8,10 +8,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.SupervisorJob
 import kotlin.math.sin
 
 object ProceduralSoundscapePlayer {
-    private val scope = CoroutineScope(Dispatchers.Default)
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     private var playbackJob: Job? = null
     private var currentTheme: String? = null
     private var volume = 0.25f // Soft ambient background volume
