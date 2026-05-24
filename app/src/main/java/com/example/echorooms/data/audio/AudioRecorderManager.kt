@@ -46,11 +46,11 @@ class AudioRecorderManager {
      * Start recording audio to the specified file.
      */
     @Suppress("DEPRECATION")
-    fun startRecording(file: File) {
+    fun startRecording(context: android.content.Context, file: File) {
         try {
             outputFile = file
             mediaRecorder = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                MediaRecorder(android.app.Application())
+                MediaRecorder(context.applicationContext)
             } else {
                 MediaRecorder()
             }.apply {
